@@ -1,23 +1,30 @@
-import logo from './logo.svg';
+import * as React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import './App.css';
+import CircularProgress from '@mui/material/CircularProgress';
+
+
+const Page = React.lazy(()=>import("./cmp/page/page"));
+const Product = React.lazy(()=>import("./cmp/productDetails/product"));
+
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <BrowserRouter>
+          <Routes>
+            <Route exact path="/" element={
+              <React.Suspense fallback={<CircularProgress className="loader" />}>
+                <Page />
+              </React.Suspense>
+            } />
+            <Route exact path="/product" element={
+              <React.Suspense fallback={<CircularProgress className="loader" />}>
+                <Product />
+              </React.Suspense>
+            }/>
+          </Routes>
+        </BrowserRouter>
     </div>
   );
 }

@@ -1,0 +1,20 @@
+.cardBox {
+    position: relative;
+    overflow: hidden;
+    
+}
+
+.cardContent {
+    width: 100%;
+    height:100%;
+    position: absolute;
+    left:0;
+    top:420px;
+    backdrop-filter: blur(10px);
+    transition: 0.5s;
+    
+}
+
+.cardBox:hover .cardContent {
+    top:0;
+}
